@@ -27,8 +27,7 @@ class MarkAllAsRead(APIView):
 class MarkAsRead(APIView):
     serializer_class = NotificationSerializer
 
-    def get(self, request, *args, **kwargs):
-        notification_id = kwargs.get('slug')
+    def get(self, request, notification_id, *args, **kwargs):
         notification_obj = Notification.objects.get(id=notification_id)
         notification_obj.unread = False
         notification_obj.save()
@@ -38,8 +37,7 @@ class MarkAsRead(APIView):
 class MarkAsUnread(APIView):
     serializer_class = NotificationSerializer
 
-    def get(self, request, *args, **kwargs):
-        notification_id = kwargs.get('slug')
+    def get(self, request, notification_id, *args, **kwargs):
         notification_obj = Notification.objects.get(id=notification_id)
         notification_obj.unread = True
         notification_obj.save()
@@ -49,7 +47,7 @@ class MarkAsUnread(APIView):
 class Delete(APIView):
     serializer_class = NotificationSerializer
 
-    def delete(self, request, *args, **kwargs):
+    def delete(self, request, notification_id, *args, **kwargs):
         notification_id = kwargs.get('slug')
         notification_obj = Notification.objects.get(id=notification_id)
         notification_obj.delete()
