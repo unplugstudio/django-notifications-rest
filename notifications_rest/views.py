@@ -5,10 +5,10 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.generics import CreateAPIView
 from .serializers import NotificationSerializer
 from notifications.models import Notification
-
-
+from rest_framework.authentication import TokenAuthentication
 class UnreadNotificationsList(ViewSet):
     serializer_class = NotificationSerializer
+    authentication_classes = [TokenAuthentication]
 
     def list(self, request, *args, **kwargs):
         queryset = Notification.objects.filter(recipient_id=request.user.id, unread=True)
@@ -17,6 +17,7 @@ class UnreadNotificationsList(ViewSet):
 
 class MarkAllAsRead(APIView):
     serializer_class = NotificationSerializer
+    authentication_classes = [TokenAuthentication]
 
     def get(self, request, format=None):
         queryset = Notification.objects.filter(recipient_id=request.user.id, unread=True)
@@ -64,6 +65,7 @@ class AddNotification(CreateAPIView):
 
 class AllNotification(ViewSet):
     serializer_class = NotificationSerializer
+    authentication_classes = [TokenAuthentication]
 
     def list(self, request, *args, **kwargs):
         queryset = Notification.objects.filter(recipient_id=request.user.id)
@@ -72,6 +74,7 @@ class AllNotification(ViewSet):
 
 class UnreadNotificationCount(APIView):
     serializer_class = NotificationSerializer
+    authentication_classes = [TokenAuthentication]
 
     def get(self, request, *args, **kwargs):
         queryset = Notification.objects.filter(recipient_id=request.user.id, unread=True)
@@ -84,6 +87,7 @@ class UnreadNotificationCount(APIView):
 
 class AllNotificationCount(APIView):
     serializer_class = NotificationSerializer
+    authentication_classes = [TokenAuthentication]
 
     def get(self, request, *args, **kwargs):
         queryset = Notification.objects.filter(recipient_id=request.user.id)
