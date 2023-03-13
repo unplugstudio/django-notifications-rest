@@ -46,9 +46,9 @@ class NotificationSerializer(ModelSerializer):
 
     class Meta:
         model = Notification
-        fields = '__all__'
-        # fields = ['id', 'recipient', 'actor', 'target', 'verb', 'level', 'description', 'unread', 'public', 'deleted',
-        #           'emailed', 'timestamp']
+        # fields = '__all__'
+        fields = ['id', 'recipient', 'actor', 'target', 'verb', 'level', 'description', 'unread', 'public', 'deleted',
+                  'emailed', 'timestamp']
 
     def create(self, validated_data):
         recipient_data = validated_data.pop('recipient')
