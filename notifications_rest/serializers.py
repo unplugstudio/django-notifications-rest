@@ -12,8 +12,7 @@ class UserSerializer(ModelSerializer):
 
     class Meta:
         model = UserModel
-        fields = ['id']
-        # fields = "__all__"
+        fields = ['id', 'first_name', 'last_name']
 
 
 class ContentTypeSerializer(ModelSerializer):
