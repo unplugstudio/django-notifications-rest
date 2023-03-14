@@ -19,7 +19,7 @@ class MarkAllAsRead(APIView):
     serializer_class = NotificationSerializer
     authentication_classes = [TokenAuthentication]
 
-    def get(self, request, format=None):
+    def put(self, request, format=None):
         queryset = Notification.objects.filter(recipient_id=request.user.id, unread=True)
         queryset.update(unread=False)
         return Response({'code': 'OK'}, status=status.HTTP_200_OK)
