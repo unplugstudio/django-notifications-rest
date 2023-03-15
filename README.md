@@ -11,6 +11,27 @@ Requirements
 - django-notifications-hq latest version
 - djangorestframework latest version
 
+Endpoints
+============
+- `GET /notifications/all/`
+Returns a list of notifications (unread and read)
+
+- `GET /notifications/unread/`
+Returns a list of unread notifications
+
+- `GET /notifications/add/`
+Create a new notification via http 
+
+- `PUT /notifications/mark-all-as-read/`
+Sets `unread` to `true` in every notification
+
+`GET /notifications/mark-as-read/${id}/`
+`GET /notifications/mark-as-unread/${id}/`
+`DELETE /notifications/${id}`
+`GET /notifications/api/unread_count/`
+`GET /notifications/api/all_count/`
+`GET /notifications/api/unread_list/`
+
 Installation
 ============
 
